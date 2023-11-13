@@ -1,17 +1,8 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
 #include <iomanip>
 #include "Card.h"
-#include "Define.rs"
-
-void shuffle();
-void menu();
-void hit();
-void stand();
-void split();
-void DD();
-void pass();
+#include "Define.res"
+#include "Functions.h"
 
 int main() {
 
@@ -39,18 +30,4 @@ int main() {
         cout << left << setw(2) << setfill('.') << a + 1 << ".." << setw(20) << setfill('.') << deck[a].toString() << deck[a].getValue() << endl;
 
     return 0;
-}
-
-void shuffle() {
-    srand(time(0));
-
-    for (int i = 0; i < 52; i++) {
-        Card temp = deck[i];
-        int index = rand() % 51;
-        deck[i] = deck[index];
-        deck[index] = temp;
-    }
-}
-void menu() {
-
 }

@@ -23,6 +23,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Define.rs" />
+    <None Include="Define.res" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
