@@ -23,10 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Define.res" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Functions.h">
+    <ClInclude Include="PlayerFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

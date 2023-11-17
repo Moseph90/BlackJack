@@ -28,4 +28,7 @@ public:
     string toString() {
         return number + suit;
     }
+    string toName() {
+        return number;
+    }
 };

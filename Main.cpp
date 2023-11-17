@@ -1,8 +1,35 @@
 #include <iostream>
 #include <iomanip>
 #include "Card.h"
-#include "Define.res"
-#include "Functions.h"
+#include "Define.h"
+#include "PlayerFunctions.h"
+
+void dealerHit() {
+
+}
+void dealerAces() {
+    if (dealerPoints + 10 <= 21)
+        dealerPoints += 10;
+    else endRound();
+}
+void split() {
+
+}
+void insurance() {
+
+}
+void dDown() {
+
+}
+void bust() {
+
+}
+void Deal() {
+
+}
+void endRound() {
+
+}
 
 int main() {
 
@@ -17,7 +44,11 @@ int main() {
         }
     }
 
-    cout << "Cards before shuffle:\n" << endl;
+    shuffle();
+    hello();
+
+
+    /*cout << "Cards before shuffle:\n" << endl;
 
     for (int b = 0; b < deck.size(); b++)
         cout << left << setw(2) << setfill('.') << b + 1 << ".." << setw(20) << setfill('.') << deck[b].toString() << deck[b].getValue() << endl;
@@ -27,7 +58,7 @@ int main() {
     cout << "\nCards after shuffle:\n" << endl;
 
     for (int a = 0; a < deck.size(); a++)
-        cout << left << setw(2) << setfill('.') << a + 1 << ".." << setw(20) << setfill('.') << deck[a].toString() << deck[a].getValue() << endl;
+        cout << left << setw(2) << setfill('.') << a + 1 << ".." << setw(20) << setfill('.') << deck[a].toString() << deck[a].getValue() << endl; */
 
     return 0;
 }
