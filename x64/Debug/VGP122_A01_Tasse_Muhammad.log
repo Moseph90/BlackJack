@@ -1,4 +1,6 @@
-﻿  Main.cpp
-D:\Term2\Programming_Fuundamentals1\VGP122_A01_Tasse_Muhammad\PlayerFunctions.h(13,24): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-D:\Term2\Programming_Fuundamentals1\VGP122_A01_Tasse_Muhammad\PlayerFunctions.h(28,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  Card.h
+  Main.cpp
+D:\Term2\Programming_Fuundamentals1\VGP122_A01_Tasse_Muhammad\PlayerFunctions.h(37,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\VGP122_A01_Tasse_Muhammad\Main.cpp(31,30): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
   VGP122_A01_Tasse_Muhammad.vcxproj -> D:\Term2\Programming_Fuundamentals1\VGP122_A01_Tasse_Muhammad\x64\Debug\VGP122_A01_Tasse_Muhammad.exe
