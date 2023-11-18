@@ -23,6 +23,7 @@ void dealerHit();
 void dealerAces();
 void cashOut();
 void reset();
+void wait(int);
 
 int deckCount;
 int credits{ 1000 };
@@ -34,6 +35,11 @@ bool dealerAce;
 bool splitt;
 bool insure;
 bool down;
+bool dubDown;
+bool dInsure;
+bool dSplitt;
+bool dealerAceRan;
+bool stood;
 
 vector<Card> pCard;
 vector<Card> dCard;
