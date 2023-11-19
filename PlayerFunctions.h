@@ -1,14 +1,15 @@
 #include <ctime>
 #include <cstdlib>
-#include "Define.h"
 using namespace std;
 
 void bet() {
-    wait(2);
+    if (credits <= 0) cashOut();
+    wait(1);
     reset();
     shuffle();
     if (credits <= 0) {
         cout << "\nYou do not have any more credit to play with" << endl;
+        wait(1);
         cashOut();
     }
     cout << "\nYou have $" << credits << " in credit. Place your bet (must be between 2 and 500). Input 0 to cash out: ";
@@ -21,7 +22,7 @@ void bet() {
             menu();
         }
         else {
-            wait(2);
+            wait(1);
             cout << "\nYou do not have enough credits to bet that much" << endl;
             bet();
         }
@@ -29,7 +30,7 @@ void bet() {
     if (betAmount < 2 || betAmount > 500){
         if (betAmount == 0) cashOut();
         else {
-            wait(2);
+            wait(1);
             cout << "\nInvalid entry. Please choose a number between 2 and 500 that does not exceed your credit" << endl;
             bet();
         }
@@ -49,12 +50,13 @@ void shuffle() {
 void hello() {
     string start;
     credits = 1000;
+    cout << "Welcome to Moseph's Blackjack Game." << endl;
+    wait(1);
     cout << "Would you like to skip the tutorial (Y/N)?: ";
     cin >> start;
     if (start == "N") {
-        cout << "Welcome to Moseph's Blackjack Game." << endl;
-        wait(2);
-        cout << "You may change the value of any Aces you have in your hand, simply input 'ACE' any time after you make your bet" << endl;
+        wait(1);
+        cout << "\nYou may change the value of any Aces you have in your hand, simply input 'ACE' any time after you make your bet" << endl;
         wait(5);
         cout << "You can wait until you're about to Stand, or you can do it early, or you can leave it as 1" << endl;
         wait(4);
@@ -62,11 +64,15 @@ void hello() {
         wait(4);
         cout << "Naturals will automatically be counted, but other than that, be sure to change your Ace(s) before you stand!" << endl;
         wait(5);
+        cout << "You can only Spllit or Double Down during your first turn, you cannot do both (eg. if you have two 5's)" << endl;
+        wait(5);
+        cout << "If you can Insure, you may choose to do so at any time before you stand. Feel free to complete your turn before deciding" << endl;
+        wait(5);
         cout << "Options are case sensitive, please keep your CAPS lock on. Input any key to start: ";
         cin >> start;
         bet();
     }
-    else bet();
+        else bet();
 }
 void menu() {
     wait(1);
@@ -129,7 +135,7 @@ void options() {
     wait(1);
     string input;
     cout << endl;
-    cout << left << setw(15) << setfill(' ') << "Action" << setw(10) << setfill(' ') << "Input" << endl;
+    cout << left << setw(15) << setfill(' ') << "Options" << setw(10) << setfill(' ') << "Input" << endl;
     cout << left << setw(20) << setfill('-') << "-" << endl;
     wait(1);
     cout << left << setw(15) << setfill(' ') << "Hit" << setw(10) << setfill(' ') << "H" << endl;
@@ -150,13 +156,12 @@ void options() {
         cout << left << setw(15) << setfill(' ') << "Double Down" << setw(10) << setfill(' ') << "DD" << endl;
         dubDown = !dubDown;
     }
-
+    cout << "\nInput: ";
     cin >> input;
     if (input == "H") hit();
     else if (input == "ST") {
         stood = true;
         splitt = false;
-        insure = false;
         down = false;
         wait(1);
         cout << "\n******You stand with " << playerPoints << "******" << endl;
@@ -164,7 +169,6 @@ void options() {
     }
     else if (input == "SP" && splitt) {
         splitt = false;
-        insure = false;
         down = false;
         split();
     }
@@ -175,14 +179,14 @@ void options() {
         insurance();
     }
     else if (input == "DD" && down) {
-        down = false;
         insure = false;
+        down = false;
         splitt = false;
+        stood = true;
         dDown();
     }
     else if (input == "ACE") {
         down = false;
-        insure = false;
         splitt = false;
         aces();
         options();
@@ -214,9 +218,11 @@ void hit() {
     if (playerPoints > 21) {
         wait(1);
         cout << "\n******You're busted******" << endl;
-        bet();
+        if (!splitted) bet();
+        else if (splitted) splitOptionsSecond();
     }
-    options();
+    if (!splitted) options();
+    else splitOptionsFirst();
 }
 void aces() {
     wait(1);
@@ -234,6 +240,7 @@ void aces() {
         }
     }
     else cout << "\nYou have no Aces to alter" << endl;
+    if (playerPoints > 21) endRound(false);
 }
 void stand() {
     wait(1);
@@ -245,6 +252,12 @@ void stand() {
         cout << dCard[0].toString() << endl;
         wait(1);
         cout << "*" << dCard[1].toString() << endl;
+        if (dCard[0].toName() == "Ace of " && dCard[1].getValue() == 10 && insured) {
+            wait(1);
+            cout << "\n******Dealer's Second Card Is Worth 10. Player Wins The Insurance******" << endl;
+            credits += sideBet;
+            cout << "\n******Credit: $" << credits << "******" << endl;
+        }
         if (dealerAce && !dealerAceRan) dealerAces();
         if (dealerPoints > 16) endRound(false);
     }
@@ -252,7 +265,7 @@ void stand() {
     if (dealerPoints < 17 && dealerPoints < playerPoints) {
         wait(1);
         cout << "\n******Dealer Hits******\n" << endl;
-        wait(2);
+        wait(1);
         cout << left << setw(20) << setfill(' ') << "Dealer Cards" << endl;
         cout << left << setw(20) << setfill('-') << "-" << endl;
         for (int i = 0; i < dCard.size(); i++) {

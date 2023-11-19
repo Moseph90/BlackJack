@@ -1,6 +1,2 @@
 ﻿  Card.h
-  Main.cpp
-D:\Term2\Programming_Fuundamentals1\BlackJack\PlayerFunctions.h(40,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Term2\Programming_Fuundamentals1\BlackJack\Main.cpp(36,30): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
   VGP122_A01_Tasse_Muhammad.vcxproj -> D:\Term2\Programming_Fuundamentals1\BlackJack\x64\Debug\VGP122_A01_Tasse_Muhammad.exe
