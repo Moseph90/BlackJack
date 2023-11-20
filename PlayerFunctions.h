@@ -90,11 +90,9 @@ void firstDeal() {
     cout << left << setw(37) << setfill('-') << "-" << endl;
     wait(1);
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
-    //cout << left << setw(20) << setfill(' ') << tempHand[0].toString();
-    //playerPoints += tempHand[0].getValue();
     playerPoints += deck[deckCount].getValue();
-    if (deck[deckCount].toName()/*tempHand[0].toName()*/ == "Ace of ") playerAcePoints += 1;
-    pCard.push_back(deck[deckCount]/*tempHand[0]*/);
+    if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
+    pCard.push_back(deck[deckCount]);
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString() << endl;
@@ -103,12 +101,10 @@ void firstDeal() {
     dCard.push_back(deck[deckCount]);
     deckCount++;
     wait(1);
-    //cout << left << setw(20) << setfill(' ') << tempHand[1].toString();
-    //playerPoints += tempHand[1].getValue();
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
     playerPoints += deck[deckCount].getValue();
-    if (deck[deckCount].toName()/*tempHand[1].toName()*/ == "Ace of ") playerAcePoints += 1;
-    pCard.push_back(deck[deckCount]/*tempHand[1]*/);
+    if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
+    pCard.push_back(deck[deckCount]);
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << "Face Down" << endl;
@@ -178,7 +174,8 @@ void options() {
     else if (input == "SP" && splitt) {
         splitt = false;
         down = false;
-        split();
+        if (pCard[0].toName() == "Ace of " && pCard[1].toName() == "Ace of ") endRoundAce();
+        else split();
     }
     else if (input == "IN" && insure) {
         insure = false;
@@ -226,6 +223,11 @@ void hit() {
         cout << "******You're busted******" << endl;
         playerPoints = 0;
         firstBusted = true;
+        if (dCard[0].toName() == "Ace of " && dCard[1].getValue() == 10 && insured) {
+            wait(1);
+            cout << "\n******Dealer's Second Card Is Worth 10. Player Wins The Insurance******" << endl;
+            credits += sideBet;
+        }
         if (!splitted) bet();
         else splitDisplay("\n**Second Hand**");
     }
@@ -250,13 +252,19 @@ void aces() {
     if (playerPoints > 21) {
         cout << "\n******You're Busted******" << endl;
         firstBusted = true;
-        if (splitted) splitDisplay("**Second Hand**");
+        if (dCard[0].toName() == "Ace of " && dCard[1].getValue() == 10 && insured) {
+            wait(1);
+            cout << "\n******Dealer's Second Card Is Worth 10. Player Wins The Insurance******" << endl;
+            credits += sideBet;
+        }
+        if (splitted && !dubAces) splitDisplay("**Second Hand**");
+        if (dubAces) cout << " ";
         else bet();
     }
 }
 void stand() {
-    wait(1);
     if (stood) {
+        wait(1);
         stood = false;
         cout << "\nDealer Cards" << endl;
         cout << left << setw(15) << setfill('-') << "-" << endl;
@@ -274,14 +282,14 @@ void stand() {
         if (dealerPoints > 16) endRound(false);
     }
 
-    if (dealerPoints < 17 && dealerPoints < max(playerPoints, secondPoints)) {
+    if (dealerPoints < 17 && dealerPoints <= max(playerPoints, secondPoints)) {
         wait(1);
         cout << "\n******Dealer Hits******\n" << endl;
         wait(1);
         cout << left << setw(20) << setfill(' ') << "Dealer Cards" << endl;
         cout << left << setw(20) << setfill('-') << "-" << endl;
+        wait(1);
         for (int i = 0; i < dCard.size(); i++) {
-            wait(1);
             cout << dCard[i].toString() << endl;
         }
         wait(1);
@@ -292,9 +300,9 @@ void stand() {
         if (deck[deckCount].toName() == "Ace of ") dealerAce = true;
     }
     if (dealerAce && !dealerAceRan) dealerAces();
-    if (dealerPoints >= 17 || dealerPoints > max(playerPoints, secondPoints)) {
-        if (!natty && !firstBusted) endRound(false);
-        else splitEndRound();
-    }
-    else if (dealerPoints < 17 && dealerPoints <= max(playerPoints, secondPoints)) stand();
+    int maximum = max(playerPoints, secondPoints);
+    if (dealerPoints >= 17 || dealerPoints > maximum) endRound(false);
+    stand();
+    //if (dealerPoints < 17 && dealerPoints <= maximum) stand();
+    //if (dealerPoints < 17 && dealerPoints == playerPoints && dealerPoints == secondPoints) stand();
 }

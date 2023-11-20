@@ -84,7 +84,7 @@ void dDown() {
 }
 void endRound(bool natural) {
     wait(1);
-    if (natural && !natty) {
+    if (natural) {
         if (!splitted) {
             cout << "\n******You Have A Natural! You Get 1.5x Your Bet******" << endl;
             credits += betAmount * 1.5;
@@ -93,29 +93,39 @@ void endRound(bool natural) {
         if (splitted) {
             cout << "\n******You Have a Natural! Because You Split Your Hand, Your Bet Is Returned To You******" << endl;
             credits += betAmount;
-            splitDisplay("**Second Hand**");
+            splitEndRound();
         }
     }
-    else if (!natural && !firstBusted && !natty) {
+    else if (!natural && !natty) {
+        if (playerPoints > 21 && dealerPoints < 22) {
+            cout << "\n******You Hand Is Busted. The House Wins The Hand******" << endl;
+            if (splitted) splitEndRound();
+            else bet();
+        }
         if (dealerPoints < 22 && dealerPoints > playerPoints) {
-            cout << "\n******Dealer Stands. The House Wins With " << dealerPoints << "******" << endl;
+            cout << "\n******Dealer Stands. The House Wins The Hand With " << dealerPoints << "******" << endl;
             if (splitted) splitEndRound();
             else bet();
         }
         if (playerPoints < 22 && playerPoints > dealerPoints) {
-            cout << "\n******Dealer Must Stand. You Win With " << playerPoints << "******" << endl;
+            cout << "\n******Dealer Must Stand. You Win The Hand With " << playerPoints << "******" << endl;
             credits += betAmount * 2;
             if (splitted) splitEndRound();
             else bet();
         }
-        if (dealerPoints > 21) {
-            cout << "\n******Dealer Is Busted. You Win With " << playerPoints << "******" << endl;
+        if (dealerPoints > 21 && playerPoints < 22) {
+            cout << "\n******Dealer Is Busted. You Win The Hand With " << playerPoints << "******" << endl;
             credits += betAmount * 2;
+            if (splitted) splitEndRound();
+            else bet();
+        }
+        if (dealerPoints > 21 && playerPoints > 21) {
+            cout << "\n*****Dealer Hand And Player Hand Are Busted*****" << endl;
             if (splitted) splitEndRound();
             else bet();
         }
         else if (dealerPoints == playerPoints) {
-            cout << "\n******Stand-Off Your Bet Of $" << betAmount << " Returns To You******" << endl;
+            cout << "\n******Stand-Off On The Hand. Your Bet Of $" << betAmount << " Returns To You******" << endl;
             credits += betAmount;
             if (splitted) splitEndRound();
             else bet();
@@ -125,8 +135,9 @@ void endRound(bool natural) {
         cout << "\n***First Hand Is Busted***" << endl;
         splitEndRound();
     }
-    else if (natty) {
-        cout << "\n***You're First Hand Is A Natural***" << endl;
+    if (natty) {
+        cout << "\n***You're First Hand Is A Natural. The Bet Amount Of $" << betAmount << " Is Returned To You***" << endl;
+        credits += secondAmount;
         splitEndRound();
     }
 }
@@ -134,8 +145,12 @@ void reset() {
     deckCount = 0;
     playerPoints = 0;
     dealerPoints = 0;
+    secondPoints = 0;
     playerAcePoints = 0;
+    secondAcePoints = 0;
     sideBet = 0;
+    betAmount = 0;
+    secondAmount = 0;
     dealerAce = false;
     dealerAceRan = false;
     splitt = false;
@@ -150,6 +165,7 @@ void reset() {
     splitNatural = false;
     firstBusted = false;
     secondBusted = false;
+    natty = false;
     pCard.clear();
     dCard.clear();
     sCard.clear();
@@ -166,19 +182,12 @@ int main() {
         card.setNumber(Card::cardNumber[cardNum]);
         card.setValue(Card::values[cardNum]);
         deck.push_back(card);
-        if (cardNum == 3 && suit == 1) tempHand.push_back(card);
-        if (cardNum == 3 && suit == 3) tempHand.push_back(card);
+        if (cardNum == 2 && suit == 1) tempHand.push_back(card);
+        if (cardNum == 2 && suit == 3) tempHand.push_back(card);
         }
     }
     hello();
 
-    /*cout << "Cards before shuffle:\n" << endl;
-    for (int b = 0; b < deck.size(); b++)
-    cout << left << setw(2) << setfill('.') << b + 1 << ".." << setw(20) << setfill('.') << deck[b].toString() << deck[b].getValue() << endl;
-    shuffle();
-    cout << "\nCards after shuffle:\n" << endl;
-    for (int a = 0; a < deck.size(); a++)
-    cout << left << setw(2) << setfill('.') << a + 1 << ".." << setw(20) << setfill('.') << deck[a].toString() << deck[a].getValue() << endl; */
     return 0;
 }
 

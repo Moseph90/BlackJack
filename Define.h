@@ -27,7 +27,7 @@ void dealerAces();
 void cashOut();
 void reset();
 void wait(int);
-//void endRoundAce();
+void endRoundAce();
 
 int deckCount;
 int credits{ 1000 };
@@ -96,8 +96,7 @@ void split() {
         cout << pCard[0].toString() << endl;
         cout << "*" << pCard[1].toString() << endl;
         if (pCard[0].toName() == "Ace of " && pCard[1].getValue() == 10) {
-            cout << "***You Got A Natural. Because You Split, The Bet Amount Of $" << betAmount << " Returns To You***" << endl;
-            credits += betAmount;
+            cout << "******You Got A Natural******" << endl;
             natty = true;
             splitDisplay("\n**Second Hand**"); 
         }
@@ -127,19 +126,20 @@ void splitDisplay(string player) {
     if (sCard[0].toName() == "Ace of " && sCard[1].getValue() == 10) {
         splitNatural = true;
         stood = true;
-        if (natty || firstBusted) splitEndRound();
-        else endRound(false);
+        endRound(false);
     }
     if (sCard[1].toName() == "Ace of " && sCard[0].getValue() == 10) {
         splitNatural = true;
         stood = true;
-        if (natty || firstBusted) splitEndRound();
-        else endRound(false);
+        endRound(false);
     }
     if (secondPoints > 21) {
         cout << "\n******You're Busted******" << endl;
         secondBusted = true;
-        if (firstBusted || natty) bet();
+        if (firstBusted) {
+            cout << "\n******Both Hands Are Busted******" << endl;
+            bet();
+        }
         else {
             stood = true;
             stand();
@@ -181,13 +181,13 @@ void secondAces() {
     if (secondAcePoints != 0) {
         if (secondAcePoints == 1) ace = " Ace, ";
         else ace = " Aces, ";
-        cout << "\nYou have " << secondAcePoints << ace << "Would you like to make one of them equal 11? (Y/N): ";
+        cout << "\nYou Have " << secondAcePoints << ace << "In Your Second Hand. Would You Like To Make One Of Them Equal 11? (Y/N): ";
         cin >> ace;
         wait(1);
         if (ace == "Y") {
             secondPoints += 10;
             secondAcePoints--;
-            cout << "\n**One Ace is now worth 11 points**" << endl;
+            cout << "\n**One Ace Is Now Worth 11 Points**" << endl;
             }
         if (secondPoints > 21) {
             cout << "\n******You're Busted******" << endl;
@@ -201,27 +201,27 @@ void secondAces() {
 void splitEndRound() {
     wait(1);
     if (splitNatural) {
-        cout << "\n******You Have a Natural! Because You Split Your Hand, Your Bet Is Returned To You******" << endl;
+        cout << "\n******You Have a Natural On Your Second Hand! Because You Split Your Hand, Your Bet Is Returned To You******" << endl;
         credits += secondAmount;
         bet();
     }
     else if (!splitNatural && !secondBusted) {
         if (dealerPoints < 22 && dealerPoints > secondPoints) {
-            cout << "\n******Dealer Stands. The House Wins With " << dealerPoints << "******" << endl;
+            cout << "\n******Dealer Stands. The House Beats Your Second Hand With " << dealerPoints << "******" << endl;
             bet();
         }
         if (secondPoints < 22 && secondPoints > dealerPoints) {
-            cout << "\n******Dealer Must Stand. You Win With " << secondPoints << "******" << endl;
+            cout << "\n******Dealer Must Stand. You Win On Your Second Hand With " << secondPoints << "******" << endl;
             credits += secondAmount * 2;
             bet();
         }
         if (dealerPoints > 21) {
-            cout << "\n******Dealer Is Busted. You Win With " << secondPoints << "******" << endl;
+            cout << "\n******Dealer Is Busted. You Win On Your Second Hand With " << secondPoints << "******" << endl;
             credits += secondAmount * 2;
             bet();
         }
         else if (dealerPoints == secondPoints) {
-            cout << "\n******Stand-Off Your Bet Of $" << secondAmount << " Returns To You******" << endl;
+            cout << "\n******Stand-Off On Your Second Hand. Your Bet Of $" << secondAmount << " Returns To You******" << endl;
             credits += secondAmount;
             bet();
         }
@@ -231,39 +231,55 @@ void splitEndRound() {
         bet();
     }
 }
-/*void endRoundAce() {
+void endRoundAce() {
     splitted = true;
+    secondAmount = betAmount;
+    credits -= secondAmount;
     wait(1);
     cout << "\n**Player Has Two Aces And Splits **" << endl;
     wait(1);
-    cout << "\n**Player May Only Draw One Card And Stand**" << endl;
+    cout << "\n**The Bet Amount Of $" << betAmount << " Is Added To The Second Hand**" << endl;
+    wait(1);
+    cout << "\n**Because You Split With Two Aces, Only One Card Will Be Drawn For Each Hand**" << endl;
     cout << endl;
-    wait(1);
+    wait(3);
     cout << left << setw(20) << setfill(' ') << "First Hand" << setw(20) << setfill(' ') << "Second Hand" << endl;
-    cout << left << setw(40) << setfill('-') << endl;
+    cout << left << setw(38) << setfill('-') << "-" << endl;
     wait(1);
-    cout << left << setw(20) << setfill(' ') << pCard[0].toString() << setw(20) << setfill(' ') << pCard[1].toString() << endl;
-    cout << left << setw(20) << setfill(' ') << deck[deckCount].toString() << setw(20) << setfill(' ') << deck[deckCount + 1].toString() << endl;
+    cout << left << setw(20) << setfill(' ') << pCard[0].toString(); 
+    wait(1);
+    cout << setw(20) << setfill(' ') << pCard[1].toString() << endl;
+    wait(1);
+    cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
+    wait(1);
+    cout << setw(20) << setfill(' ') << deck[deckCount + 1].toString() << endl;
 
-    playerPoints -= playerPoints / 2;
-    secondPoints += playerPoints;
-    playerPoints += deck[deckCount].getValue();
-    secondPoints += deck[deckCount].getValue();
-    if (pCard[0].toName() == "Ace of " && deck[deckCount].getValue() == 10) {
-        cout << "\n***You Have A Natural. Becuase You Split, Your Bet Of $" << secondAmount << " Is Returned To You***" << endl;
-        credits += betAmount;
+    playerPoints = pCard[0].getValue() + deck[deckCount].getValue();
+    secondPoints = pCard[1].getValue() + deck[deckCount + 1].getValue();
+    
+    sCard.push_back(pCard[1]);
+    pCard.erase(pCard.begin() + 1);
+    pCard.push_back(deck[deckCount]);
+    sCard.push_back(deck[deckCount + 1]);
+    deckCount += 2;
+
+    if (sCard[0].toName() == "Ace of " && sCard[1].getValue() == 10) {
+        splitNatural = true;
     }
-    if (deck[deckCount].toName() == "Ace of " && pCard[0].getValue() == 10) {
-        cout << "\n***You Have A Natural On Your First Hand. Becuase You Split, Your Bet Of $" << secondAmount << " Is Returned To You***" << endl;
-        credits += betAmount;
+    else if (sCard[1].toName() == "Ace of " && sCard[0].getValue() == 10) {
+        splitNatural = true;
     }
-    if (pCard[1].toName() == "Ace of " && deck[deckCount + 1].getValue() == 10) {
-        cout << "\n***You Have A Natural On Your Second Hand. Becuase You Split, Your Bet Of $" << secondAmount << " Is Returned To You***" << endl;
-        credits += betAmount;
+    if (pCard[0].toName() == "Ace of " && pCard[1].getValue() == 10) {
+        natty = true;
     }
-    if (deck[deckCount + 1].getValue() == 10 && pCard[1].toName() == "Ace of ") {
-        cout << "\n***You Have A Natural. Becuase You Split, Your Bet Of $" << secondAmount << " Is Returned To You***" << endl;
-        credits += betAmount;
+    else if (pCard[1].toName() == "Ace of " && pCard[0].getValue() == 10) {
+        natty = true;
     }
-    stand();
-}*/
+    if (natty && splitNatural) endRound(false);
+    else {
+        playerPoints += 10;
+        secondPoints += 10;
+        stood = true;
+        stand();
+    }
+}
