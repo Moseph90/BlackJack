@@ -86,13 +86,15 @@ void menu() {
     }
 }
 void firstDeal() {
-    cout << left << setw(20) << setfill(' ') << "\nPlayer Cards" << setw(20) << setfill(' ') << "Dealer Cards" << endl;
-    cout << left << setw(40) << setfill('-') << "-" << endl;
+    cout << left << setw(20) << setfill(' ') << "\nPlayer Cards" << setw(20) << setfill(' ') << " Dealer Cards" << endl;
+    cout << left << setw(37) << setfill('-') << "-" << endl;
     wait(1);
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
+    //cout << left << setw(20) << setfill(' ') << tempHand[0].toString();
+    //playerPoints += tempHand[0].getValue();
     playerPoints += deck[deckCount].getValue();
-    if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
-    pCard.push_back(deck[deckCount]);
+    if (deck[deckCount].toName()/*tempHand[0].toName()*/ == "Ace of ") playerAcePoints += 1;
+    pCard.push_back(deck[deckCount]/*tempHand[0]*/);
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString() << endl;
@@ -101,10 +103,12 @@ void firstDeal() {
     dCard.push_back(deck[deckCount]);
     deckCount++;
     wait(1);
+    //cout << left << setw(20) << setfill(' ') << tempHand[1].toString();
+    //playerPoints += tempHand[1].getValue();
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
     playerPoints += deck[deckCount].getValue();
-    if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
-    pCard.push_back(deck[deckCount]);
+    if (deck[deckCount].toName()/*tempHand[1].toName()*/ == "Ace of ") playerAcePoints += 1;
+    pCard.push_back(deck[deckCount]/*tempHand[1]*/);
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << "Face Down" << endl;
@@ -128,6 +132,7 @@ void firstDeal() {
     }
     if (pCard[0].toName() == "Ace of " && pCard[1].getValue() == 10) endRound(true);
     if (pCard[1].toName() == "Ace of " && pCard[0].getValue() == 10) endRound(true);
+    if (pCard[0].toName() == "Ace of " && pCard[1].toName() == "Ace of ") dubAces = true;
 
     options();
 }
@@ -139,33 +144,36 @@ void options() {
     cout << left << setw(20) << setfill('-') << "-" << endl;
     wait(1);
     cout << left << setw(15) << setfill(' ') << "Hit" << setw(10) << setfill(' ') << "H" << endl;
-    wait(1);
     cout << left << setw(15) << setfill(' ') << "Stand" << setw(10) << setfill(' ') << "ST" << endl;
     if (insure && dInsure) {
-        wait(1);
         cout << left << setw(15) << setfill(' ') << "Insure" << setw(10) << setfill(' ') << "IN" << endl;
         dInsure = !dInsure;
     }
     if (splitt && dSplitt) {
-        wait(1);
         cout << left << setw(15) << setfill(' ') << "Split" << setw(10) << setfill(' ') << "SP" << endl;
         dSplitt = !dSplitt;
     }
     if (down && dubDown) {
-        wait(1);
         cout << left << setw(15) << setfill(' ') << "Double Down" << setw(10) << setfill(' ') << "DD" << endl;
         dubDown = !dubDown;
     }
     cout << "\nInput: ";
     cin >> input;
     if (input == "H") hit();
-    else if (input == "ST") {
+    else if (input == "ST" && !splitted) {
         stood = true;
         splitt = false;
         down = false;
         wait(1);
-        cout << "\n******You stand with " << playerPoints << "******" << endl;
+        cout << "\n******You Stand With " << playerPoints << "******" << endl;
         stand();
+    }
+    else if (input == "ST" && splitted) {
+        splitt = false;
+        down = false;
+        wait(1);
+        cout << "\n******You Stand On Your First Hand With " << playerPoints << "******" << endl;
+        splitDisplay("\n**Second Hand**");
     }
     else if (input == "SP" && splitt) {
         splitt = false;
@@ -201,13 +209,11 @@ void hit() {
     wait(1);
     cout << "\n******Player Hits******" << endl;
     wait(1);
-    deckCount++;
     cout << "\nPlayer Cards" << endl;
     cout << left << setw(15) << setfill('-') << "-" << endl;
-    for (int i = 0; i < pCard.size(); i++) {
-        wait(1);
+    wait(1);
+    for (int i = 0; i < pCard.size(); i++)
         cout << pCard[i].toString() << endl;
-    }
     wait(1);
     cout << "*" << deck[deckCount].toString() << endl;
     cout << endl;
@@ -217,12 +223,13 @@ void hit() {
     deckCount++;
     if (playerPoints > 21) {
         wait(1);
-        cout << "\n******You're busted******" << endl;
+        cout << "******You're busted******" << endl;
+        playerPoints = 0;
+        firstBusted = true;
         if (!splitted) bet();
-        else if (splitted) splitOptionsSecond();
+        else splitDisplay("\n**Second Hand**");
     }
-    if (!splitted) options();
-    else splitOptionsFirst();
+    options();
 }
 void aces() {
     wait(1);
@@ -236,11 +243,16 @@ void aces() {
         if (ace == "Y") {
             playerPoints += 10;
             playerAcePoints--;
-            cout << "\nOne Ace is now worth 11 points" << endl;
+            cout << "\n**One Ace is now worth 11 points**" << endl;
         }
     }
     else cout << "\nYou have no Aces to alter" << endl;
-    if (playerPoints > 21) endRound(false);
+    if (playerPoints > 21) {
+        cout << "\n******You're Busted******" << endl;
+        firstBusted = true;
+        if (splitted) splitDisplay("**Second Hand**");
+        else bet();
+    }
 }
 void stand() {
     wait(1);
@@ -262,7 +274,7 @@ void stand() {
         if (dealerPoints > 16) endRound(false);
     }
 
-    if (dealerPoints < 17 && dealerPoints < playerPoints) {
+    if (dealerPoints < 17 && dealerPoints < max(playerPoints, secondPoints)) {
         wait(1);
         cout << "\n******Dealer Hits******\n" << endl;
         wait(1);
@@ -280,6 +292,9 @@ void stand() {
         if (deck[deckCount].toName() == "Ace of ") dealerAce = true;
     }
     if (dealerAce && !dealerAceRan) dealerAces();
-    if (dealerPoints >= 17 || dealerPoints > playerPoints) endRound(false);
-    else if (dealerPoints < 17 && dealerPoints < playerPoints) stand();
+    if (dealerPoints >= 17 || dealerPoints > max(playerPoints, secondPoints)) {
+        if (!natty && !firstBusted) endRound(false);
+        else splitEndRound();
+    }
+    else if (dealerPoints < 17 && dealerPoints <= max(playerPoints, secondPoints)) stand();
 }

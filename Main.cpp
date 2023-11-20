@@ -84,31 +84,50 @@ void dDown() {
 }
 void endRound(bool natural) {
     wait(1);
-    if (natural) {
-        cout << "\n******You have a natural! You Get 1.5x Your Bet******" << endl;
-        credits += betAmount * 1.5;
-        bet();
+    if (natural && !natty) {
+        if (!splitted) {
+            cout << "\n******You Have A Natural! You Get 1.5x Your Bet******" << endl;
+            credits += betAmount * 1.5;
+            bet();
+        }
+        if (splitted) {
+            cout << "\n******You Have a Natural! Because You Split Your Hand, Your Bet Is Returned To You******" << endl;
+            credits += betAmount;
+            splitDisplay("**Second Hand**");
+        }
     }
-    else if (!natural){
+    else if (!natural && !firstBusted && !natty) {
         if (dealerPoints < 22 && dealerPoints > playerPoints) {
             cout << "\n******Dealer Stands. The House Wins With " << dealerPoints << "******" << endl;
-            bet();
+            if (splitted) splitEndRound();
+            else bet();
         }
         if (playerPoints < 22 && playerPoints > dealerPoints) {
             cout << "\n******Dealer Must Stand. You Win With " << playerPoints << "******" << endl;
             credits += betAmount * 2;
-            bet();
+            if (splitted) splitEndRound();
+            else bet();
         }
         if (dealerPoints > 21) {
             cout << "\n******Dealer Is Busted. You Win With " << playerPoints << "******" << endl;
             credits += betAmount * 2;
-            bet();
+            if (splitted) splitEndRound();
+            else bet();
         }
         else if (dealerPoints == playerPoints) {
             cout << "\n******Stand-Off Your Bet Of $" << betAmount << " Returns To You******" << endl;
             credits += betAmount;
-            bet();
+            if (splitted) splitEndRound();
+            else bet();
         }
+    }
+    if (firstBusted){
+        cout << "\n***First Hand Is Busted***" << endl;
+        splitEndRound();
+    }
+    else if (natty) {
+        cout << "\n***You're First Hand Is A Natural***" << endl;
+        splitEndRound();
     }
 }
 void reset() {
@@ -127,6 +146,10 @@ void reset() {
     dubDown = false;
     stood = false;
     splitted = false;
+    dubAces = false;
+    splitNatural = false;
+    firstBusted = false;
+    secondBusted = false;
     pCard.clear();
     dCard.clear();
     sCard.clear();
@@ -143,6 +166,8 @@ int main() {
         card.setNumber(Card::cardNumber[cardNum]);
         card.setValue(Card::values[cardNum]);
         deck.push_back(card);
+        if (cardNum == 3 && suit == 1) tempHand.push_back(card);
+        if (cardNum == 3 && suit == 3) tempHand.push_back(card);
         }
     }
     hello();
