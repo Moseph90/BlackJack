@@ -8,7 +8,13 @@
 
 void dealerAces() {
     int temp = dealerPoints + 10;
-    if (temp < 22 && temp >16) {
+    if (temp < 22 && temp > 16) {
+        dealerPoints += 10;
+        dealerAce = false;
+        dealerAceRan = true;
+        endRound(false);
+    }
+    if (temp > max(playerPoints, secondPoints) && temp < 22) {
         dealerPoints += 10;
         dealerAce = false;
         dealerAceRan = true;
@@ -182,8 +188,8 @@ int main() {
         card.setNumber(Card::cardNumber[cardNum]);
         card.setValue(Card::values[cardNum]);
         deck.push_back(card);
-        if (cardNum == 2 && suit == 1) tempHand.push_back(card);
-        if (cardNum == 2 && suit == 3) tempHand.push_back(card);
+        if (cardNum == 2 && suit == 1) tempHand.push_back(card); //Change cardNum to 0 on this line to give the player an Ace or 9, 10, 11, 12 for a 10/face card.
+        if (cardNum == 2 && suit == 3) tempHand.push_back(card); //Change cardNum to 0 on this line to give the player an Ace or 9, 10, 11, 12 for a 10/face card.
         }
     }
     hello();

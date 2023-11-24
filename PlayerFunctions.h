@@ -52,10 +52,11 @@ void hello() {
     credits = 1000;
     cout << "Welcome to Moseph's Blackjack Game." << endl;
     wait(1);
-    cout << "Would you like to skip the tutorial (Y/N)?: ";
+    cout << "We would like to take you throug a short tutorial. Have you gone through the tutorial before(Y/N)?: ";
     cin >> start;
-    if (start == "N") {
-        wait(1);
+    if (start == "N" || start == "n") {
+        cout << "\nSince this is your first time playing, we will give you a short tutorial. You'll need it win!" << endl;
+        wait(3);
         cout << "\nYou may change the value of any Aces you have in your hand, simply input 'ACE' any time after you make your bet" << endl;
         wait(5);
         cout << "You can wait until you're about to Stand, or you can do it early, or you can leave it as 1" << endl;
@@ -64,7 +65,7 @@ void hello() {
         wait(4);
         cout << "Naturals will automatically be counted, but other than that, be sure to change your Ace(s) before you stand!" << endl;
         wait(5);
-        cout << "You can only Spllit or Double Down during your first turn, you cannot do both (eg. if you have two 5's)" << endl;
+        cout << "You can only Split or Double Down during your first turn, you cannot do both (eg. if you have two 5's)" << endl;
         wait(5);
         cout << "If you can Insure, you may choose to do so at any time before you stand. Feel free to complete your turn before deciding" << endl;
         wait(5);
@@ -89,10 +90,17 @@ void firstDeal() {
     cout << left << setw(20) << setfill(' ') << "\nPlayer Cards" << setw(20) << setfill(' ') << " Dealer Cards" << endl;
     cout << left << setw(37) << setfill('-') << "-" << endl;
     wait(1);
+    //Comment out the code below for testing split pairs
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
     playerPoints += deck[deckCount].getValue();
     if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
     pCard.push_back(deck[deckCount]);
+    //Comment out the code above for testing split pairs
+    //This is the start of the temporary code for testing
+    //cout << left << setw(20) << setfill(' ') << tempHand[0].toString();
+    //playerPoints += tempHand[0].getValue();              //Use these 3 lines of code to force a split pair in the player's first hand and comment out the above 4 lines
+    //pCard.push_back(tempHand[0]);
+    //This is the end of the temporary code for testing
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString() << endl;
@@ -101,10 +109,17 @@ void firstDeal() {
     dCard.push_back(deck[deckCount]);
     deckCount++;
     wait(1);
+    //Comment out the code below for testing split pairs
     cout << left << setw(20) << setfill(' ') << deck[deckCount].toString();
     playerPoints += deck[deckCount].getValue();
     if (deck[deckCount].toName() == "Ace of ") playerAcePoints += 1;
     pCard.push_back(deck[deckCount]);
+    //Comment out the code above for testing split pairs
+    //This is the start of the temporary code for testing
+    //cout << left << setw(20) << setfill(' ') << tempHand[1].toString();
+    //playerPoints += tempHand[1].getValue();          //Use these 3 lines of code to force a split pair in the player's first hand and comment out the above 4 lines
+    //pCard.push_back(tempHand[1]);
+    //This is the end of the temporary code for testing
     deckCount++;
     wait(1);
     cout << left << setw(20) << setfill(' ') << "Face Down" << endl;
