@@ -1,7 +1,0 @@
-﻿  Card.h
-  Main.cpp
-D:\Term2\Programming_Fuundamentals1\BlackJack\PlayerFunctions.h(41,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Term2\Programming_Fuundamentals1\BlackJack\Main.cpp(96,34): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-D:\Term2\Programming_Fuundamentals1\BlackJack\PlayerFunctions.h(323): warning C4717: 'stand': recursive on all control paths, function will cause runtime stack overflow
-  VGP122_A01_Tasse_Muhammad.vcxproj -> D:\Term2\Programming_Fuundamentals1\BlackJack\x64\Debug\VGP122_A01_Tasse_Muhammad.exe
