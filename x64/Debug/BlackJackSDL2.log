@@ -1,3 +1,2 @@
-﻿  GameCards.cpp
-D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameCards.cpp(129,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  BlackJackSDL2.vcxproj -> D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\x64\Debug\BlackJackSDL2.exe
+﻿  Main.cpp
+  BlackJackSDL2.vcxproj -> D:\Term2\Programming_Fuundamentals1\BlackJack\x64\Debug\BlackJackSDL2.exe
