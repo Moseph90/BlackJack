@@ -2,19 +2,13 @@ This program only works with SDL 2 attached to it. If you want to run it, you wi
 It's explains it far better than I could:
 
 Setting up SDL 2 on Visual Studio 2019 Community Edition
-Last Updated: Sep 17th, 2022:
-
-[a link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/msvc2019/index.php)
+Last Updated: Sep 17th, 2022: [link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/msvc2019/index.php)
 
 Setting up SDL 2 on Linux
-Last Updated: Sep 17th, 2022:
-
-[a link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/linux/index.php)
+Last Updated: Sep 17th, 2022: [link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/linux/index.php)
 
 Setting up SDL 2 on Mac OS X Sonoma
-Last Updated: Jan 7th, 2024
-
-[a link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php)
+Last Updated: Jan 7th, 2024 [link](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php)
 
 If you managed to get it working, cudos, it took me forever. Just compile and run the main function, there are no errors as of this commit but there may be linker or other 
 errors if you didn't configure SDL2 properly. Just click the play button that shows up in the GUI and the game scene will appear. Pay attention to the text at the top of the 
