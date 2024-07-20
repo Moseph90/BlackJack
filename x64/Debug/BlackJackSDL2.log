@@ -1,2 +1,57 @@
-﻿  Main.cpp
-  BlackJackSDL2.vcxproj -> D:\Term2\Programming_Fuundamentals1\BlackJack\x64\Debug\BlackJackSDL2.exe
+﻿  Game.cpp
+  GameBetting.cpp
+  GameCards.cpp
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameCards.cpp(129,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  GameObject.cpp
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(56,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(57,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(58,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(59,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(62,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(63,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(66,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(67,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(68,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(69,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(70,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(71,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(72,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(73,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(76,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(77,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(82,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(83,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(86,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameObject.cpp(87,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  GameSetUp.cpp
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(62,127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(62,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(62,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(62,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(63,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(63,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(63,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(63,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(67,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(67,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(69,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(69,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(70,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(70,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(73,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(73,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(92,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(93,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(94,16): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(95,16): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(98,14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\GameSetUp.cpp(99,14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Main.cpp
+  TextureManager.cpp
+  Generating Code...
+Game.obj : error LNK2019: unresolved external symbol TTF_Init referenced in function "public: void __cdecl Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QEAAXPEBDHHHH_N@Z)
+Game.obj : error LNK2019: unresolved external symbol TTF_Quit referenced in function "public: void __cdecl Game::clean(void)" (?clean@Game@@QEAAXXZ)
+TextureManager.obj : error LNK2019: unresolved external symbol IMG_Load referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTexture(char const *,struct SDL_Renderer *)" (?LoadTexture@TextureManager@@SAPEAUSDL_Texture@@PEBDPEAUSDL_Renderer@@@Z)
+TextureManager.obj : error LNK2019: unresolved external symbol TTF_OpenFont referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTextTexture(char const *,struct SDL_Renderer *)" (?LoadTextTexture@TextureManager@@SAPEAUSDL_Texture@@PEBDPEAUSDL_Renderer@@@Z)
+TextureManager.obj : error LNK2019: unresolved external symbol TTF_RenderText_Solid referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTextTexture(char const *,struct SDL_Renderer *)" (?LoadTextTexture@TextureManager@@SAPEAUSDL_Texture@@PEBDPEAUSDL_Renderer@@@Z)
+D:\Term2\Programming_Fuundamentals1\BlackJackSDL2\x64\Debug\BlackJackSDL2.exe : fatal error LNK1120: 5 unresolved externals

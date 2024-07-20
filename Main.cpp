@@ -1,3 +1,5 @@
+//********Here we set up the window and frame rate using SDL functions. All of the SDL specific functions are named SDL_someVariable********//
+
 #include "SDL.h"
 #include "Game.h"
 
@@ -11,8 +13,11 @@ int main(int argc, char* argv[]) {
 	int frameTime;
 
 	game = new Game();
+
+	//game->init() uses SDL functions and variables to create a window and initialize SDL properties.
 	game->init("BlackJack", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 768, false);
 
+	//This is where all of the updates happen, they begin here and are nested from here upward through the program
 	while (game->running()) {
 		frameStart = SDL_GetTicks();
 

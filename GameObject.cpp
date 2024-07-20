@@ -52,6 +52,8 @@ void GameObject::setValue(int val) {
 int GameObject::getValue() {
 	return cardvalue;
 }
+
+//For pngs that can be used it their entirety and don't need to be partitioned but do need to be scaled to a certain size
 void GameObject::Update(float dx, float dy, float dw, float dh) {
 	destRect.x = dx;
 	destRect.y = dy;
@@ -62,6 +64,8 @@ void GameObject::Update(float dx, float dy, float dw, float dh) {
 	srcRect.w = dw;
 	srcRect.h = dh;
 }
+
+//For images that need to be sliced to get certain pixels, also they need to be in a particular location and particular size
 void GameObject::Update(float sx, float sy, float sw, float sh, float dx, float dy, float dw, float dh) {
 	srcRect.x = sx;
 	srcRect.y = sy;
@@ -72,6 +76,8 @@ void GameObject::Update(float sx, float sy, float sw, float sh, float dx, float 
 	destRect.w = dw;
 	destRect.h = dh;
 }
+
+//This one is for the full screen objects as they don't need coordinates and they use the whole image so no need to get a portion of it 
 void GameObject::Update(float dw, float dh) {
 	destRect.w = dw;
 	destRect.h = dh;
