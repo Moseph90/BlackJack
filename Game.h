@@ -130,14 +130,16 @@ private:
 	int playerPoints;
 	int dealerPoints;
 
-	//One of these represents the deck at the top right of the screen and the other is for the dealer's second card on the first deal
+	// One of these represents the deck at the top right of the screen 
+	// and the other is for the dealer's second card on the first deal
 	GameObject* faceDownCard;
 	GameObject* faceDownCard2;
 
 	bool isRunning;				//This keeps the main while loop going. If it's false, the game shuts down.
 	bool firstScene = true;
 
-	//These are SDL specific objects that help to create windows and render objects you will see the renderer a lot in this program
+	// These are SDL specific objects that help to create windows and 
+	// render objects you will see the renderer a lot in this program
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
@@ -158,7 +160,7 @@ private:
 	GameObject* betMessage;
 	GameObject* dealtMessage;
 	GameObject* notEnoughMoney;
-	GameObject* betBeforeDeal;		//Different messages that show at the top of the screen at the right times.
+	GameObject* betBeforeDeal;		//These are messages that show at the top of the screen at the right times.
 	GameObject* bustedMessage;
 	GameObject* dealerBusted;
 	GameObject* standOffMessage;
@@ -186,7 +188,8 @@ private:
 	bool dealerAce = false;
 	bool playerAce = false;
 
-	//X Coordinates For Card Placement. As the player and dealer both have their cards on the same X coordinates I only have to have differnt Ys
+	// X Coordinates For Card Placement. As the player and dealer both have 
+	// their cards on the same X coordinates I only have to have differnt Ys
 	int xPos[6] = {300, 360, 420, 480, 540, 600};
 	int playerYpos = 400;
 	int dealerYpos = 120;
