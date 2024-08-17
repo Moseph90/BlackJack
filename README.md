@@ -12,6 +12,7 @@ Last Updated: Jan 7th, 2024: [Click Here](https://lazyfoo.net/tutorials/SDL/01_h
 ***You also have to download SDL2_Image and SDL2_ttf (image and true type fonts). Combine the includes and libs folders from these inside of the regualr SDL include and libs folders. Contrastly, you could just add each of the libs and includes in the project separately if you prefer***
 
 [Click here for the releases of SDL2 image](https://github.com/libsdl-org/SDL_image/releases)
+
 [Click here for the releases of SDL2 ttf](https://github.com/libsdl-org/SDL_ttf/releases)
 
 If you managed to get it working, just compile and run the main function, there are no errors as of this commit but there may be linker or other 
