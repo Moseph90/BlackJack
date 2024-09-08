@@ -1,5 +1,5 @@
 
-											//*************START HERE***********//
+						//*************START HERE***********//
 
 //***************************************************************************************
 //This header file is the heart of the game, GameBetting.cpp, GameCards.cpp and 
